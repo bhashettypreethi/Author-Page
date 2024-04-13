@@ -5,7 +5,7 @@ const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
     axios
-      .get("/authors")
+      .get("http://localhost:4000/authors")
       .then((response) => {
         setAuthors(response.data);
         console.log(response.data);
