@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
   publish = "build"
-  base = "my-react-app/"
+  base = "/"
 
 [dev]
   command = "npm start"
