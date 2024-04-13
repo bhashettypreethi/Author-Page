@@ -1,0 +1,42 @@
+1. Who are the first 10 authors ordered by date_of_birth?
+
+    SELECT * from  authors ORDER BY date_of_birth LIMIT 10;
+
+2. What is the sales total for the author named “Lorelai Gilmore”?
+
+    SELECT SUM(item_price * quantity) AS total_sales from sale_items 
+    JOIN books ON sale_items.book_id = books.id
+    JOIN authors ON books.author_id = authors.id
+    where authors.name = 'Lorelai Gilmore';
+
+3. What are the top 10 performing authors, ranked by sales revenue?
+
+    SELECT authors.name, SUM(item_price * quantity) AS total_sales
+    FROM sale_items
+    JOIN books ON sale_items.book_id = books.id
+    JOIN authors ON books.author_id = authors.id
+    GROUP BY authors.name
+    ORDER BY total_sales DESC
+    LIMIT 10;
+
+
+CREATE TABLE authors (
+id serial PRIMARY KEY,
+name text,
+email text,
+date_of_birth timestamp
+);
+
+CREATE TABLE books (
+id serial PRIMARY KEY,
+author_id integer REFERENCES authors (id),
+isbn text,
+);
+
+CREATE TABLE sale_items (
+id serial PRIMARY KEY,
+book_id integer REFERENCES books (id),
+customer_name text,
+item_price money,
+quantity integer
+);
