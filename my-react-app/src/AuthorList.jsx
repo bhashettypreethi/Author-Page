@@ -12,33 +12,98 @@ const AuthorList = () => {
       })
       .catch((error) => console.error("Error fetching authors", error));
   }, []);
+  console.log("hello");
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:4000/authors/${id}`)
+      .then(() => {
+        setAuthors(authors.filter((author) => author.id !== id));
+      })
+      .catch((error) => console.error("Error deleting author", error));
+  };
   // console.log(response.data);
   return (
-    <div>
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
-        You have {authors.length} Team Members
-      </h1>
+    <div
+      style={{
+        padding: "20px 20px 5px 20px",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        maxWidth: "600px",
+        margin: "auto",
+        marginBottom: "5px"
+      }}
+    >
+      <div style={{ display:"flex"}}>
+        <img 
+          src="backArrow.png" 
+          alt="BackArrow"
+          width="30px"
+          height="30px"
+          style={{paddingTop:"10px"}}
+          >
+        </img>
+        <h4 style={{ textAlign: "center", marginBottom: "20px", marginLeft: "150px"}}>
+          You have {authors.length} Team Members
+        </h4>
+      </div>
+
       <ul style={{ listStyleType: "none", padding: 0 }}>
         {authors.map((author) => (
           <li
-            key={author.name}
+            key={author.id}
             style={{
               marginBottom: "10px",
               padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
+              // border: "1px solid #ccc",
+              // borderRadius: "5px",
+              position: "relative", // Add this to position the icon
+              borderBottom: "1px solid #f0f0f0", // Add this line for line separation
+              // boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+              // maxWidth: "600px", // Adjust the max width as needed
+              // margin: "auto", // Center the box horizontally
             }}
           >
             <img
-              src="logo512.png"
-              alt="image"
+              src="ProfilePicture.png"
+              alt="ProfilePicture"
               width="50px"
               style={{ borderRadius: "50%" }}
+              marginLeft="25px" 
             />
-            <div style={{ display: "inline-block", marginLeft: "10px" }}>
-              <h3 style={{ margin: 0 }}>{author.name}</h3>
-              <p style={{ margin: 0 }}>{author.email}</p>
+            <div style={{ display: "inline-block", marginLeft: "20px" }}>
+              <h4 style={{ margin: 0, fontWeight: "bold", padding: "5px 0px 5px 0px" }}>{author.name}</h4>
+              <p style={{ margin: 0, padding: "5px 0px 5px 0px", color: "#4e616b" }}>{author.email}</p>
             </div>
+            <button
+              onClick={() => handleDelete(author.id)}
+              style={{
+                position: "absolute",
+                top: "5px",
+                right: "5px",
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
+                borderRadius: "50%",
+                width: "25px",
+                height: "25px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "12px",
+                color: "white",
+                // backgroundColor: "#a0adb4",
+                position: "absolute",
+                margin: "25px 30px 0px 0px"
+                // transform: "translate(50%, -50%)",
+              }}
+            >
+              <img
+              src="CloseIcon.png"
+              alt="CloseIcon"
+              width="30px">
+              </img>
+            </button>
           </li>
         ))}
       </ul>
