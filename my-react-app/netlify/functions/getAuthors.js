@@ -7,15 +7,13 @@ const sqlite3 = require("sqlite3").verbose();
 const app = express();
 
 // Create a new database instance or open an existing one
+
 const dbPath = path.resolve(__dirname, "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
 
-// netlify/functions/getAuthors.js
 const handler = async (event) => {
   try {
-    // Your logic here. For a database query, you would connect to the database and execute a query.
-    const data = { name: "Author 1", email: "abc" };
     const query = `
       SELECT authors.name, authors.email, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
       FROM authors
@@ -29,24 +27,32 @@ const handler = async (event) => {
     db.all(query, (err, rows) => {
       if (err) {
         console.error(err.message);
-        res.status(500).json({ error: "Internal Server Error" });
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: "Internal Server Error" }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
       } else {
         console.log(rows);
-        res.json(rows);
+        return {
+          statusCode: 200,
+          body: JSON.stringify(rows),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
       }
     });
-
+  } catch (error) {
+    console.error(error);
     return {
-      statusCode: 200,
-      body: JSON.stringify(rows),
+      statusCode: 500,
+      body: JSON.stringify({ error: "Internal Server Error" }),
       headers: {
         "Content-Type": "application/json",
       },
-    };
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ msg: error.toString() }),
     };
   }
 };
