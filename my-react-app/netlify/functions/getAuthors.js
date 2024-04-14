@@ -8,7 +8,7 @@ const app = express();
 
 // Create a new database instance or open an existing one
 
-const dbPath = path.resolve(__dirname, "../../mydatabase.db");
+const dbPath = path.resolve(__dirname, "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
 const fs = require("fs");
