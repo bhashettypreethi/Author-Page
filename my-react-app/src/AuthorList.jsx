@@ -31,19 +31,24 @@ const AuthorList = () => {
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         maxWidth: "600px",
         margin: "auto",
-        marginBottom: "5px"
+        marginBottom: "5px",
       }}
     >
-      <div style={{ display:"flex"}}>
-        <img 
-          src="backArrow.png" 
+      <div style={{ display: "flex" }}>
+        <img
+          src="backArrow.png"
           alt="BackArrow"
           width="30px"
           height="30px"
-          style={{paddingTop:"10px"}}
-          >
-        </img>
-        <h4 style={{ textAlign: "center", marginBottom: "20px", marginLeft: "150px"}}>
+          style={{ paddingTop: "10px" }}
+        ></img>
+        <h4
+          style={{
+            textAlign: "center",
+            marginBottom: "20px",
+            marginLeft: "150px",
+          }}
+        >
           You have {authors.length} Team Members
         </h4>
       </div>
@@ -69,11 +74,27 @@ const AuthorList = () => {
               alt="ProfilePicture"
               width="50px"
               style={{ borderRadius: "50%" }}
-              marginLeft="25px" 
+              marginLeft="25px"
             />
             <div style={{ display: "inline-block", marginLeft: "20px" }}>
-              <h4 style={{ margin: 0, fontWeight: "bold", padding: "5px 0px 5px 0px" }}>{author.name}</h4>
-              <p style={{ margin: 0, padding: "5px 0px 5px 0px", color: "#4e616b" }}>{author.email}</p>
+              <h4
+                style={{
+                  margin: 0,
+                  fontWeight: "bold",
+                  padding: "5px 0px 5px 0px",
+                }}
+              >
+                {author.name}
+              </h4>
+              <p
+                style={{
+                  margin: 0,
+                  padding: "5px 0px 5px 0px",
+                  color: "#4e616b",
+                }}
+              >
+                {author.email}
+              </p>
             </div>
             <button
               onClick={() => handleDelete(author.id)}
@@ -93,16 +114,11 @@ const AuthorList = () => {
                 fontSize: "12px",
                 color: "white",
                 // backgroundColor: "#a0adb4",
-                position: "absolute",
-                margin: "25px 30px 0px 0px"
+                margin: "25px 30px 0px 0px",
                 // transform: "translate(50%, -50%)",
               }}
             >
-              <img
-              src="CloseIcon.png"
-              alt="CloseIcon"
-              width="30px">
-              </img>
+              <img src="CloseIcon.png" alt="CloseIcon" width="30px"></img>
             </button>
           </li>
         ))}
