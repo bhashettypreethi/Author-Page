@@ -21,9 +21,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 console.log(db, dbPath);
-const fs = require("fs");
-
-fs.chmodSync(dbPath, "600");
 
 exports.handler = async (event, context) => {
   const query = `
