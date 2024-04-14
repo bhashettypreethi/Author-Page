@@ -5,7 +5,7 @@ const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/authors")
+      .get("/authors")
       .then((response) => {
         setAuthors(response.data);
         console.log(response.data);
@@ -15,7 +15,7 @@ const AuthorList = () => {
   console.log("hello");
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:4000/authors/${id}`)
+      .delete(`/authors/${id}`)
       .then(() => {
         setAuthors(authors.filter((author) => author.id !== id));
       })
