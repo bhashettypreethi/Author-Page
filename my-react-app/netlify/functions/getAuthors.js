@@ -5,11 +5,6 @@ const { Pool } = require("pg");
 const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
-// const PORT = process.env.PORT || 4000;
-
-// app.use(cors());
-// Serve static files (e.g., your React app's build files)
-// app.use(express.static(path.join(__dirname, "client/build")));
 
 // Create a new database instance or open an existing one
 const dbPath = path.resolve(__dirname, "mydatabase.db");
@@ -21,10 +16,28 @@ const handler = async (event) => {
   try {
     // Your logic here. For a database query, you would connect to the database and execute a query.
     const data = { name: "Author 1", email: "abc" };
+    const query = `
+      SELECT authors.name, authors.email, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
+      FROM authors
+      JOIN books ON authors.id = books.author_id
+      JOIN sale_items ON books.id = sale_items.book_id
+      GROUP BY authors.id
+      ORDER BY total_sales DESC
+      LIMIT 10
+    `;
+
+    db.all(query, (err, rows) => {
+            if (err) {
+              console.error(err.message);
+              res.status(500).json({ error: "Internal Server Error" });
+            } else {
+              res.json(rows);
+            }
+          });
 
     return {
       statusCode: 200,
-      body: JSON.stringify(data),
+      body: JSON.stringify(rows),
       headers: {
         "Content-Type": "application/json",
       },
