@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const myFunction = require("./netlify/functions/getAuthors");
+const myFunction = require("../netlify/functions/getAuthors");
 
 const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
