@@ -70,3 +70,34 @@ process.on("SIGINT", () => {
     process.exit(0);
   });
 });
+
+module.exports = app;
+// netlify/functions/authors.js
+const app = require("./authors");
+
+exports.handler = async (event, context) => {
+  const { path, httpMethod } = event;
+  const queryParams = event.queryStringParameters;
+
+  // Set up request and response objects
+  const req = { path, httpMethod, query: queryParams };
+  let resBody = "";
+  const res = {
+    setHeader: (name, value) => {},
+    send: (body) => {
+      resBody = body;
+    },
+    end: () => {
+      return {
+        statusCode: 200,
+        body: JSON.stringify(resBody),
+      };
+    },
+  };
+
+  // Handle the request using the Express app
+  await app(req, res);
+
+  // Return the response
+  return res.end();
+};
