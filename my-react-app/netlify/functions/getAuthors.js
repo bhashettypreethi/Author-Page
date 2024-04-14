@@ -12,49 +12,38 @@ const dbPath = path.resolve(__dirname, "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
 
-exports.handler = async (event) => {
-  try {
-    const query = `
-      SELECT authors.name, authors.email, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
-      FROM authors
-      JOIN books ON authors.id = books.author_id
-      JOIN sale_items ON books.id = sale_items.book_id
-      GROUP BY authors.id
-      ORDER BY total_sales DESC
-      LIMIT 10
-    `;
+exports.handler = async (event, context) => {
+  const query = `
+    SELECT authors.name, authors.email, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
+    FROM authors
+    JOIN books ON authors.id = books.author_id
+    JOIN sale_items ON books.id = sale_items.book_id
+    GROUP BY authors.id
+    ORDER BY total_sales DESC
+    LIMIT 10
+  `;
 
-    db.all(query, (err, rows) => {
-      if (err) {
-        console.error(err.message);
-        return {
-          statusCode: 500,
-          body: JSON.stringify({ error: "Internal Server Error" }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-      } else {
-        console.log(rows);
-        return {
-          statusCode: 200,
-          body: JSON.stringify(rows),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-      }
-    });
-  } catch (error) {
-    console.error(error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Internal Server Error" }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-  }
+  db.all(query, (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Internal Server Error" }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    } else {
+      console.log(rows);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(rows),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    }
+  });
 };
 
 // module.exports = { handler };

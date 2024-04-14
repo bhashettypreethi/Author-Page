@@ -8,7 +8,7 @@ const AuthorList = () => {
     axios
       .get("/.netlify/functions/getAuthors")
       .then((response) => {
-        setAuthors(response.data);
+        setAuthors(JSON.parse(response.data));
         console.log(response.data);
       })
       .catch((error) => console.error("Error fetching authors", error));
