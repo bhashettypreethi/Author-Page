@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// const myFunction = require("../netlify/functions/getAuthors");
 
 const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
     axios
-      .get("/.netlify/functions/getAuthors")
+      .get("http://localhost:4000/authors")
       .then((response) => {
-        setAuthors(JSON.parse(response.data));
-        console.log(response.data);
+        setAuthors(response.data);
       })
       .catch((error) => console.error("Error fetching authors", error));
   }, []);
-  console.log("hello");
+
   const handleDelete = (id) => {
     axios
-      .delete(`/.netlify/functions/getAuthors/${id}`)
+      .delete(`http://localhost:4000/authors/${id}`)
       .then(() => {
         setAuthors(authors.filter((author) => author.id !== id));
       })
       .catch((error) => console.error("Error deleting author", error));
   };
-  // console.log(response.data);
+
   return (
     <div
       style={{
@@ -57,17 +55,12 @@ const AuthorList = () => {
       <ul style={{ listStyleType: "none", padding: 0 }}>
         {authors.map((author) => (
           <li
-            key={author.id}
+            key={author.name}
             style={{
               marginBottom: "10px",
               padding: "10px",
-              // border: "1px solid #ccc",
-              // borderRadius: "5px",
-              position: "relative", // Add this to position the icon
-              borderBottom: "1px solid #f0f0f0", // Add this line for line separation
-              // boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-              // maxWidth: "600px", // Adjust the max width as needed
-              // margin: "auto", // Center the box horizontally
+              position: "relative",
+              borderBottom: "1px solid #f0f0f0",
             }}
           >
             <img
@@ -75,7 +68,7 @@ const AuthorList = () => {
               alt="ProfilePicture"
               width="50px"
               style={{ borderRadius: "50%" }}
-              marginLeft="25px"
+              margin-left="25px"
             />
             <div style={{ display: "inline-block", marginLeft: "20px" }}>
               <h4
@@ -114,9 +107,7 @@ const AuthorList = () => {
                 alignItems: "center",
                 fontSize: "12px",
                 color: "white",
-                // backgroundColor: "#a0adb4",
                 margin: "25px 30px 0px 0px",
-                // transform: "translate(50%, -50%)",
               }}
             >
               <img src="CloseIcon.png" alt="CloseIcon" width="30px"></img>

@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const { Pool } = require("pg");
 const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
@@ -14,15 +13,15 @@ app.use(express.static(path.join(__dirname, "client/build")));
 // Create a new database instance or open an existing one
 const dbPath = path.resolve(process.cwd(), "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
-console.log(db, dbPath);
 
-app.use((req, res, next) => {
+app.use(( res, next) => {
   res.setHeader(
     "Content-Security-Policy",
     "default-src 'self'; connect-src 'self' http://localhost:4000;"
   );
   next();
 });
+
 // Endpoint to get top 10 performing authors
 app.get("/authors", async (req, res) => {
   try {
