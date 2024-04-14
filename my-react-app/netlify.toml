@@ -1,8 +1,5 @@
+[build.environment]
+  NODE_VERSION = "16"
 [build]
-  command = "npm run build"
+  command = "npm run build && npm run dev"
   publish = "build"
-  node_version = "16"
-
-[dev]
-  command = "npm run dev"
-  port = 3001
