@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const myFunction = require("./netlify/functions/myFunction");
 
 const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
     axios
-      .get("/main--author-page.netlify.app/.netlify/functions/getAuthors")
+      .get("myFunction")
       .then((response) => {
         setAuthors(response.data);
         console.log(response.data);
@@ -15,9 +16,7 @@ const AuthorList = () => {
   console.log("hello");
   const handleDelete = (id) => {
     axios
-      .delete(
-        `/main--author-page.netlify.app/.netlify/functions/getAuthors/${id}`
-      )
+      .delete(`myFunction/${id}`)
       .then(() => {
         setAuthors(authors.filter((author) => author.id !== id));
       })
