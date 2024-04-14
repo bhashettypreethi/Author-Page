@@ -10,7 +10,7 @@ const app = express();
 
 const dbPath = path.resolve(__dirname, "mydatabase.db");
 const fs = require("fs");
-fs.chmodSync("my-react-app/netlify/functions/mydatabase.db", "600");
+fs.chmodSync(dbPath, "600");
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error("Error opening database", err);
