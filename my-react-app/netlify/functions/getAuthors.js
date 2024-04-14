@@ -11,11 +11,20 @@ const app = express();
 // const dbPath = path.resolve(__dirname, "mydatabase.db");
 let dbPath;
 if (process.env.LOCAL_ENV === "true") {
-  dbPath = "/path/to/local/mydatabase.db";
+  dbPath = "my-react-app/netlify/functions/mydatabase.db";
 } else {
   dbPath = path.resolve("my-react-app/netlify/functions/mydatabase.db");
 }
-const db = new sqlite3.Database(dbPath);
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) {
+    console.error("Error opening database", err);
+    callback(null, {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Failed to open database" }),
+    });
+    return;
+  }
+});
 console.log(db, dbPath);
 const fs = require("fs");
 
