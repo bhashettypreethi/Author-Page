@@ -5,7 +5,7 @@ const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
     axios
-      .get("/.netlify/functions/getAuthors")
+      .get("/.netlify/functions/authors")
       .then((response) => {
         setAuthors(response.data);
         console.log(response.data);
@@ -15,7 +15,7 @@ const AuthorList = () => {
   console.log("hello");
   const handleDelete = (id) => {
     axios
-      .delete(`/.netlify/functions/getAuthors/${id}`)
+      .delete(`/.netlify/functions/authors/${id}`)
       .then(() => {
         setAuthors(authors.filter((author) => author.id !== id));
       })
