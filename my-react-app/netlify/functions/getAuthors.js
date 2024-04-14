@@ -12,7 +12,7 @@ const dbPath = path.resolve(__dirname, "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
 
-const handler = async (event) => {
+exports.handler = async (event) => {
   try {
     const query = `
       SELECT authors.name, authors.email, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
@@ -57,7 +57,7 @@ const handler = async (event) => {
   }
 };
 
-module.exports = { handler };
+// module.exports = { handler };
 
 // app.use((req, res, next) => {
 //   res.setHeader(
