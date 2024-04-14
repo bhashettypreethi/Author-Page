@@ -26,6 +26,7 @@ exports.handler = async (event, context) => {
   db.all(query, (err, rows) => {
     if (err) {
       console.error(err.message);
+      console.log("In API error");
       return {
         statusCode: 500,
         body: JSON.stringify({ error: "Internal Server Error" }),
@@ -34,6 +35,7 @@ exports.handler = async (event, context) => {
         },
       };
     } else {
+      console.log("in else API");
       console.log(rows);
       return {
         statusCode: 200,
