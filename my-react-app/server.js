@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 const dbPath = path.resolve(process.cwd(), "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 
-app.use(( res, next) => {
+app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
     "default-src 'self'; connect-src 'self' http://localhost:4000;"
