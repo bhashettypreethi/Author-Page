@@ -27,13 +27,14 @@ const handler = async (event) => {
     `;
 
     db.all(query, (err, rows) => {
-            if (err) {
-              console.error(err.message);
-              res.status(500).json({ error: "Internal Server Error" });
-            } else {
-              res.json(rows);
-            }
-          });
+      if (err) {
+        console.error(err.message);
+        res.status(500).json({ error: "Internal Server Error" });
+      } else {
+        console.log(rows);
+        res.json(rows);
+      }
+    });
 
     return {
       statusCode: 200,
