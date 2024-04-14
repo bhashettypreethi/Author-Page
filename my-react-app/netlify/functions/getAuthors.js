@@ -13,7 +13,7 @@ let dbPath;
 if (process.env.LOCAL_ENV === "true") {
   dbPath = "/path/to/local/mydatabase.db";
 } else {
-  dbPath = path.resolve(__dirname, "mydatabase.db");
+  dbPath = path.resolve("my-react-app/netlify/functions/mydatabase.db");
 }
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
