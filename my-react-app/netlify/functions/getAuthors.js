@@ -11,6 +11,9 @@ const app = express();
 const dbPath = path.resolve(__dirname, "../../mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
+const fs = require("fs");
+
+fs.chmodSync(dbPath, "600");
 
 exports.handler = async (event, context) => {
   const query = `
