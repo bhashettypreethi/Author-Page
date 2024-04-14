@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 // Create a new database instance or open an existing one
-const dbPath = path.resolve(__dirname, "mydatabase.db");
+const dbPath = path.resolve(process.cwd(), "mydatabase.db");
 const db = new sqlite3.Database(dbPath);
 console.log(db, dbPath);
 
