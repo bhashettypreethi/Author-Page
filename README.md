@@ -33,7 +33,7 @@
 
 ### React page with Top 10 performing authors -> my-react-app/public/Top10PerformingAuthors.png
 
-![Sample Image of Rendered Web page](/Users/preethibhashetty/Krikey/my-react-app/public/Top10PerformingAuthors.png)
+![Sample Image of Rendered Web page](/my-react-app/public/Top10PerformingAuthors.png)
 
 ---
 
