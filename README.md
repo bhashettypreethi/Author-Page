@@ -15,8 +15,10 @@
 
 ## 2: Build & Deploy Webpage
 
-1.  Install dependencies. Run `npm install`
-2.  Make sure there are no other processes running on port `3000` and `4000`.
+1.  Install dependencies. Run `npm install` (Make sure you are inside `Krikey/my-react-app` directory).
+2.  Run the command `npm run build` to build the project which creates a build folder containing the optimized production build.
+3.  Run the command `npm run dev` to start client and server scripts. Client renders on port 3000, server on port 4000.
+4.  Make sure there are no other processes running on port `3000` and `4000`.
 
     - If you encounter an error saying some process is already running on the above ports run
 
@@ -28,8 +30,6 @@
 
       to kill any processes running on port 3000.
 
-3.  Run the command `npm run build` to build the project and create a build folder containing the optimized production build.
-4.  Run the command `npm run dev` to start client and server scripts. Client renders on port 3000, server on port 4000.
 5.  Access the application at http://localhost:3000 to view the list of top 10 performing authors.
 
 ---
