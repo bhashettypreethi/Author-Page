@@ -33,8 +33,6 @@
 
 ### Sample Image of Rendered Web page with Top 10 performing authors
 
-&nbsp;
-
 ![Sample Image of Rendered Web page](/my-react-app/public/Top10PerformingAuthors.png)
 
 ---
