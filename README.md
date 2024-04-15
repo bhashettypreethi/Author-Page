@@ -1,20 +1,22 @@
 # Krikey Coding Challenge
 
+## Clone the project from https://github.com/bhashettypreethi/Author-Page
+
 ## 1: SQL Queries
 
 - ### How to run queries:
 
-  1.  Install sqlite to run queries. Run command `brew install sqlite` to install it.
-  2.  To open sqlite terminal run `sqlite3 absolute_path`. Reference comnand below.
-      sqlite3 /Users/preethibhashetty/Krikey/my-react-app/mydatabase.db
-  3.  Run queries from `SQL` file located in the root of project.
+  1.  Install sqlite to run queries. Run `brew install sqlite` to install it.
+  2.  Open SQLite Terminal: Run `sqlite3 <absolute_path>` with the absolute path of `mydatabase.db`. Reference example below.
+
+      `sqlite3 /Users/preethibhashetty/Krikey/my-react-app/mydatabase.db`
+
+  3.  Run queries from the SQL file in the project's root.
 
 ## 2: Build & Deploy Webpage
 
-1.  Pull the project to your local from https://github.com/bhashettypreethi/Author-Page
-2.  Install dependencies. Run command `npm install`
-3.  This code uses two ports for client side rendering(defaulted to 3000) and Server side rendering(configured to 4000)
-4.  Make sure there are no other processes running on port `3000` and `4000`.
+1.  Install dependencies. Run `npm install`
+2.  Make sure there are no other processes running on port `3000` and `4000`.
 
     - If you encounter an error saying some process is already running on the above ports run
 
@@ -22,12 +24,13 @@
 
       to kill any processes running on port 4000 and run
 
-          lsof -ti:3000 | xargs kill to kill any processes running on port 3000.
+          lsof -ti:3000 | xargs kill
 
-5.  Run the command `npm run build` to build the project and create a build folder containing the optimized production build.
-6.  Run the command `npm run dev` to start both the client and server scripts. The client-side will be rendered on port 3000 by default, while the server-side will be rendered on port 4000.
+      to kill any processes running on port 3000.
 
-    Access the application at http://localhost:3000 to view the list of top 10 performing authors.
+3.  Run the command `npm run build` to build the project and create a build folder containing the optimized production build.
+4.  Run the command `npm run dev` to start client and server scripts. Client renders on port 3000, server on port 4000.
+5.  Access the application at http://localhost:3000 to view the list of top 10 performing authors.
 
 ---
 
