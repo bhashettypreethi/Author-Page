@@ -7,7 +7,7 @@
 - ### How to run queries:
 
   1.  Install sqlite to run queries. Run `brew install sqlite` to install it.
-  2.  Open SQLite Terminal: Run `sqlite3 <absolute_path>` with the absolute path of `mydatabase.db`. Reference example below.
+  2.  To open SQLite terminal run `sqlite3 <absolute_path>` with the absolute path of `mydatabase.db`. Reference example below.
 
       `sqlite3 /Users/preethibhashetty/Krikey/my-react-app/mydatabase.db`
 
@@ -15,20 +15,20 @@
 
 ## 2: Build & Deploy Webpage
 
-1.  Install dependencies. Run `npm install` (Make sure you are inside `Krikey/my-react-app` directory).
+1.  To install dependencies run `npm install` (Make sure current directory is `Krikey/my-react-app`).
 2.  Run the command `npm run build` to build the project which creates a build folder containing the optimized production build.
-3.  Run the command `npm run dev` to start client and server scripts. Client renders on port 3000, server on port 4000.
-4.  Make sure there are no other processes running on port `3000` and `4000`.
-
-    - If you encounter an error saying some process is already running on the above ports run
+3.  Run the command `npm run dev` to start client and server scripts. Client renders on port 3000, server on port 4000. 
+    - If you encounter an error saying some process is already running on the above ports do the following.
+    
+        To kill any processes running on port 4000
 
           lsof -ti:4000 | xargs kill
 
-      to kill any processes running on port 4000 and run
+        To kill any processes running on port 3000
 
           lsof -ti:3000 | xargs kill
 
-      to kill any processes running on port 3000.
+
 
 5.  Access the application at http://localhost:3000 to view the list of top 10 performing authors.
 
